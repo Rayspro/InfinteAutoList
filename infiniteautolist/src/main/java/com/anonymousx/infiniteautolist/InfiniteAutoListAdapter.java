@@ -1,4 +1,4 @@
-package Adapter;
+package com.anonymousx.infiniteautolist;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
-
 
 public abstract class InfiniteAutoListAdapter extends RecyclerView.Adapter<InfiniteAutoListAdapter.Holder> {
 

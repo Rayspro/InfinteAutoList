@@ -12,7 +12,6 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
-import Adapter.InfiniteAutoListAdapter;
 
 public class InfiniteAutoList {
 
@@ -108,5 +107,4 @@ public class InfiniteAutoList {
             return 0L;
         }
     }
-
 }
