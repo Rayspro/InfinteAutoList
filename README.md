@@ -2,7 +2,7 @@
 Library help to make recycler view easy by providing extended feature on recycler like auto scroll with loop sliders.
 
 ### Prerequisites
-SDK should be grater than 16.
+SDK should be greater than 16.
 Library works on RecyclerView so you need to put recycler dependency in your project.
 
 ### Installing
