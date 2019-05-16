@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class InfiniteAutoList {
+public  class InfiniteAutoList {
 
     private RecyclerView rec;
     private ArrayList<String> arrayList;
@@ -31,7 +31,7 @@ public class InfiniteAutoList {
         this.infiniteEasyAdapter = infiniteEasyAdapter;
     }
 
-    protected void init() {
+   public void init() {
         SnapHelper snapHelper=new PagerSnapHelper();
         snapHelper.attachToRecyclerView(rec);
         rec.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,false));
