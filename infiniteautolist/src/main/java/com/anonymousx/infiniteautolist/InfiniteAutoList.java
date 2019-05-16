@@ -57,7 +57,7 @@ public  class InfiniteAutoList {
         rec.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
             @Override
             public boolean onInterceptTouchEvent(@NonNull RecyclerView recyclerView, @NonNull MotionEvent motionEvent) {
-                Toast.makeText(context,"Touch Intercept Event", Toast.LENGTH_LONG).show();
+               // Toast.makeText(context,"Touch Intercept Event", Toast.LENGTH_LONG).show();
                 // timer.cancel();
                 //handler.wait(1000);
                 timerTask.cancel();
@@ -75,12 +75,12 @@ public  class InfiniteAutoList {
 
             @Override
             public void onTouchEvent(@NonNull RecyclerView recyclerView, @NonNull MotionEvent motionEvent) {
-                Toast.makeText(context,"Touch Event",Toast.LENGTH_LONG).show();
+              //  Toast.makeText(context,"Touch Event",Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onRequestDisallowInterceptTouchEvent(boolean b) {
-                Toast.makeText(context,"Touch Event 2",Toast.LENGTH_LONG).show();
+             //   Toast.makeText(context,"Touch Event 2",Toast.LENGTH_LONG).show();
             }
         });
     }
