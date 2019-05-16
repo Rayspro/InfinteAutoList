@@ -8,15 +8,12 @@ import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SnapHelper;
 import android.view.MotionEvent;
-import android.widget.Toast;
-import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public  class InfiniteAutoList {
 
     private RecyclerView rec;
-    private ArrayList<String> arrayList;
     private Timer timer;
     private Long wait=9000L;
     private Long timeDelayed=3000L;
@@ -24,6 +21,7 @@ public  class InfiniteAutoList {
     private TimerTask timerTask;
     private InfiniteAutoListAdapter infiniteEasyAdapter;
     private Context context;
+    private RecyclerView.LayoutManager layoutManager;
 
     public InfiniteAutoList(Context context,RecyclerView recyclerView, InfiniteAutoListAdapter infiniteEasyAdapter) {
         this.rec = recyclerView;
@@ -53,7 +51,6 @@ public  class InfiniteAutoList {
                 timer.schedule(timerTask,1,timeDelayed);
             }
         },1);
-
         rec.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
             @Override
             public boolean onInterceptTouchEvent(@NonNull RecyclerView recyclerView, @NonNull MotionEvent motionEvent) {

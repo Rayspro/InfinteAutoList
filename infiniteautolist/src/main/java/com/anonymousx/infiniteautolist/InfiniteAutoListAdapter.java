@@ -13,18 +13,16 @@ import java.util.ArrayList;
 public abstract class InfiniteAutoListAdapter extends RecyclerView.Adapter<InfiniteAutoListAdapter.Holder> {
 
     private Context context;
-    private ArrayList<String> data;
+    private ArrayList data;
     public int position;
-    public int state;
     private Boolean isCrop;
 
-    public InfiniteAutoListAdapter(Context context, ArrayList<String> arrayList, Boolean isCrop) {
+    public InfiniteAutoListAdapter(Context context, ArrayList arrayList, Boolean isCrop) {
         this.context = context;
         this.data=arrayList;
         position=arrayList.size();
         this.isCrop=isCrop;
     }
-
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -52,6 +50,7 @@ public abstract class InfiniteAutoListAdapter extends RecyclerView.Adapter<Infin
     }
 
     public abstract int onSetView();
+
     public abstract void onBindView(Holder holder,int position);
    // public abstract View onCreateView(ViewGroup viewGroup,int i);
 }
