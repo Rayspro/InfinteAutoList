@@ -32,10 +32,10 @@ Step 6.After the simply call init() method.
 
 ### Extra customize
 
-init() : to start Adapter.
-setDelayTime(3000L): set Delay Time.
-setTouchwait(9000L):set Touch Time.
-Remember always call both method after init call.
+	init() : to start Adapter.
+	setDelayTime(3000L): set Delay Time.
+	setTouchwait(9000L):set Touch Time.
+	Remember always call both method after init call.
 
 ### Example
 
