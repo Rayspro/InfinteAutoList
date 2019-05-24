@@ -36,7 +36,7 @@ setDelayTime(3000L): set Delay Time
 setTouchwait(9000L):set Touch Time
 Remember always call both method after init call.
 
-###Example
+### Example
 public class OfferView extends InfiniteAutoListAdapter {
     private ArrayList<Type_of_array> arraylist;
     private Context context;
@@ -59,7 +59,7 @@ public class OfferView extends InfiniteAutoListAdapter {
     }
 }
 
-####In your main activity..
+#### In your main activity..
 OfferView offerView=new OfferView(getContext(),Arraylist);
 InfiniteAutoList infiniteAutoList=new InfiniteAutoList(context,RecyclerView_id rec,offerView);
 infiniteAutoList.init();
