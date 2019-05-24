@@ -15,8 +15,8 @@ public  class InfiniteAutoList {
 
     private RecyclerView rec;
     private Timer timer;
-    private Long wait=9000L;
-    private Long timeDelayed=3000L;
+    private Long wait=12000L;
+    private Long timeDelayed=6000L;
     private Boolean isCrop=false;
     private TimerTask timerTask;
     private InfiniteAutoListAdapter infiniteEasyAdapter;
@@ -97,6 +97,7 @@ public  class InfiniteAutoList {
     public void setDelayTime(Long duration){
         timeDelayed=duration;
     }
+
     public Long getDelayedTime(){
         if(timeDelayed!=null){
             return timeDelayed;

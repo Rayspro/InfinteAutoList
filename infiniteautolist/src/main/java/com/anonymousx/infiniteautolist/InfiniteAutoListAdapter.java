@@ -34,7 +34,7 @@ public abstract class InfiniteAutoListAdapter extends RecyclerView.Adapter<Infin
 
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int i) {
-        onBindView(holder,i);
+        onBindView(holder,i%data.size());
     }
 
     @Override
@@ -52,5 +52,5 @@ public abstract class InfiniteAutoListAdapter extends RecyclerView.Adapter<Infin
     public abstract int onSetView();
 
     public abstract void onBindView(Holder holder,int position);
-   // public abstract View onCreateView(ViewGroup viewGroup,int i);
+
 }
