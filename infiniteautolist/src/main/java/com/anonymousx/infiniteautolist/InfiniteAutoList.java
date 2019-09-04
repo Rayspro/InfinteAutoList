@@ -31,14 +31,12 @@ public  class InfiniteAutoList {
     private Context context;
     private RecyclerView.LayoutManager layoutManager;
     private RequestQueue MyRequestQueue;
-    private  Object obj;
 
-    public InfiniteAutoList(Context context,RecyclerView recyclerView, InfiniteAutoListAdapter infiniteEasyAdapter,Object obj) {
+    public InfiniteAutoList(Context context,RecyclerView recyclerView, InfiniteAutoListAdapter infiniteEasyAdapter) {
         this.rec = recyclerView;
         this.context=context;
         this.infiniteEasyAdapter = infiniteEasyAdapter;
         MyRequestQueue = Volley.newRequestQueue(context);
-        this.obj=obj;
     }
 
    public void init() {
@@ -46,9 +44,6 @@ public  class InfiniteAutoList {
         snapHelper.attachToRecyclerView(rec);
         rec.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,false));
         rec.setAdapter(infiniteEasyAdapter);
-        if(obj!=null){
-            setData(obj);
-        }
         //rec.getLayoutManager().getFocusedChild().setElevation();
         setDelayTime(1000L);
         setTouchwait(3000L);
