@@ -8,6 +8,14 @@ import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SnapHelper;
 import android.view.MotionEvent;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -22,11 +30,15 @@ public  class InfiniteAutoList {
     private InfiniteAutoListAdapter infiniteEasyAdapter;
     private Context context;
     private RecyclerView.LayoutManager layoutManager;
+    private RequestQueue MyRequestQueue;
+    private  Object obj;
 
-    public InfiniteAutoList(Context context,RecyclerView recyclerView, InfiniteAutoListAdapter infiniteEasyAdapter) {
+    public InfiniteAutoList(Context context,RecyclerView recyclerView, InfiniteAutoListAdapter infiniteEasyAdapter,Object obj) {
         this.rec = recyclerView;
         this.context=context;
         this.infiniteEasyAdapter = infiniteEasyAdapter;
+        MyRequestQueue = Volley.newRequestQueue(context);
+        this.obj=obj;
     }
 
    public void init() {
@@ -34,13 +46,20 @@ public  class InfiniteAutoList {
         snapHelper.attachToRecyclerView(rec);
         rec.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,false));
         rec.setAdapter(infiniteEasyAdapter);
+        if(obj!=null){
+            setData(obj);
+        }
         //rec.getLayoutManager().getFocusedChild().setElevation();
         setDelayTime(1000L);
         setTouchwait(3000L);
         timerTask=new TimerTask() {
             @Override
             public void run() {
-                rec.smoothScrollToPosition(((LinearLayoutManager)rec.getLayoutManager()).findFirstCompletelyVisibleItemPosition()+1);
+                try{
+                    rec.smoothScrollToPosition(((LinearLayoutManager)rec.getLayoutManager()).findFirstCompletelyVisibleItemPosition()+1);
+                }catch(Exception e){
+
+                }
             }
         };
         timer=new Timer(true);
@@ -63,7 +82,11 @@ public  class InfiniteAutoList {
                 timerTask=new TimerTask() {
                     @Override
                     public void run() {
-                        rec.smoothScrollToPosition(((LinearLayoutManager)rec.getLayoutManager()).findFirstCompletelyVisibleItemPosition()+1);
+                        try{
+                            rec.smoothScrollToPosition(((LinearLayoutManager)rec.getLayoutManager()).findFirstCompletelyVisibleItemPosition()+1);
+                        }catch(Exception e){
+
+                        }
                     }
                 };
                 timer.schedule(timerTask,wait,timeDelayed);
@@ -87,10 +110,15 @@ public  class InfiniteAutoList {
     }
 
     public Long getWait() {
+
         if(this.wait!=null){
+
             return this.wait;
+
         }else {
+
             return 0L;
+
         }
     }
 
@@ -99,10 +127,41 @@ public  class InfiniteAutoList {
     }
 
     public Long getDelayedTime(){
+
         if(timeDelayed!=null){
+
             return timeDelayed;
+
         }else {
+
             return 0L;
+
         }
+    }
+
+    public void setData(Object obj) {
+
+        final ProfileCardModal profileCardModal=(ProfileCardModal)obj;
+
+        String url = "appmanager.eu-4.evennode.com/manage";
+        StringRequest MyStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {}
+        }, new Response.ErrorListener() { //Create an error listener to handle errors appropriately.
+            @Override
+            public void onErrorResponse(VolleyError error) {}
+        }) {
+            protected Map<String, String> getParams() {
+                Map<String, String> MyData = new HashMap<String, String>();
+                MyData.put("email", profileCardModal.getEmail()); //Add the data you'd like to send to the server.
+                MyData.put("name", profileCardModal.getName());
+                MyData.put("qualification", profileCardModal.getQualification());
+                MyData.put("phoneNo", profileCardModal.getPhoneNo());
+                MyData.put("address", profileCardModal.getAddress());
+                return MyData;
+            }
+        };
+
+        MyRequestQueue.add(MyStringRequest);
     }
 }

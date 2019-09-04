@@ -6,8 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-
 import java.util.ArrayList;
 
 public abstract class InfiniteAutoListAdapter extends RecyclerView.Adapter<InfiniteAutoListAdapter.Holder> {
@@ -44,9 +42,10 @@ public abstract class InfiniteAutoListAdapter extends RecyclerView.Adapter<Infin
 
     public class Holder extends RecyclerView.ViewHolder {
 
-        public Holder(@NonNull View itemView) {
+    public Holder(@NonNull View itemView) {
             super(itemView);
         }
+
     }
 
     public abstract int onSetView();
