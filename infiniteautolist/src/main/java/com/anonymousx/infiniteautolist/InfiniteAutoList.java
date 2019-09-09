@@ -8,14 +8,8 @@ import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SnapHelper;
 import android.view.MotionEvent;
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -52,9 +46,7 @@ public  class InfiniteAutoList {
             public void run() {
                 try{
                     rec.smoothScrollToPosition(((LinearLayoutManager)rec.getLayoutManager()).findFirstCompletelyVisibleItemPosition()+1);
-                }catch(Exception e){
-
-                }
+                }catch(Exception e){}
             }
         };
         timer=new Timer(true);
@@ -68,9 +60,6 @@ public  class InfiniteAutoList {
         rec.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
             @Override
             public boolean onInterceptTouchEvent(@NonNull RecyclerView recyclerView, @NonNull MotionEvent motionEvent) {
-               // Toast.makeText(context,"Touch Intercept Event", Toast.LENGTH_LONG).show();
-                // timer.cancel();
-                //handler.wait(1000);
                 timerTask.cancel();
                 timer.cancel();
                 timer=new Timer(true);
@@ -78,10 +67,10 @@ public  class InfiniteAutoList {
                     @Override
                     public void run() {
                         try{
-                            rec.smoothScrollToPosition(((LinearLayoutManager)rec.getLayoutManager()).findFirstCompletelyVisibleItemPosition()+1);
-                        }catch(Exception e){
 
-                        }
+                            rec.smoothScrollToPosition(((LinearLayoutManager)rec.getLayoutManager()).findFirstCompletelyVisibleItemPosition()+1);
+
+                        }catch(Exception e){}
                     }
                 };
                 timer.schedule(timerTask,wait,timeDelayed);
@@ -89,14 +78,10 @@ public  class InfiniteAutoList {
             }
 
             @Override
-            public void onTouchEvent(@NonNull RecyclerView recyclerView, @NonNull MotionEvent motionEvent) {
-              //  Toast.makeText(context,"Touch Event",Toast.LENGTH_LONG).show();
-            }
+            public void onTouchEvent(@NonNull RecyclerView recyclerView, @NonNull MotionEvent motionEvent) {}
 
             @Override
-            public void onRequestDisallowInterceptTouchEvent(boolean b) {
-             //   Toast.makeText(context,"Touch Event 2",Toast.LENGTH_LONG).show();
-            }
+            public void onRequestDisallowInterceptTouchEvent(boolean b) {}
         });
     }
 
@@ -132,31 +117,5 @@ public  class InfiniteAutoList {
             return 0L;
 
         }
-    }
-
-    public void setData(Object obj) {
-
-        final ProfileCardModal profileCardModal=(ProfileCardModal)obj;
-
-        String url = "appmanager.eu-4.evennode.com/manage";
-        StringRequest MyStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {}
-        }, new Response.ErrorListener() { //Create an error listener to handle errors appropriately.
-            @Override
-            public void onErrorResponse(VolleyError error) {}
-        }) {
-            protected Map<String, String> getParams() {
-                Map<String, String> MyData = new HashMap<String, String>();
-                MyData.put("email", profileCardModal.getEmail()); //Add the data you'd like to send to the server.
-                MyData.put("name", profileCardModal.getName());
-                MyData.put("qualification", profileCardModal.getQualification());
-                MyData.put("phoneNo", profileCardModal.getPhoneNo());
-                MyData.put("address", profileCardModal.getAddress());
-                return MyData;
-            }
-        };
-
-        MyRequestQueue.add(MyStringRequest);
     }
 }
