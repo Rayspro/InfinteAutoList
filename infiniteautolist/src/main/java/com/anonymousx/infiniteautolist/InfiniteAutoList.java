@@ -8,6 +8,8 @@ import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SnapHelper;
 import android.view.MotionEvent;
+import android.view.View;
+
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import java.util.Timer;
@@ -45,8 +47,14 @@ public  class InfiniteAutoList {
             @Override
             public void run() {
                 try{
+
                     rec.smoothScrollToPosition(((LinearLayoutManager)rec.getLayoutManager()).findFirstCompletelyVisibleItemPosition()+1);
-                }catch(Exception e){}
+
+                }catch(Exception e){
+
+                    rec.setVisibility(View.GONE);
+
+                }
             }
         };
         timer=new Timer(true);
@@ -70,7 +78,11 @@ public  class InfiniteAutoList {
 
                             rec.smoothScrollToPosition(((LinearLayoutManager)rec.getLayoutManager()).findFirstCompletelyVisibleItemPosition()+1);
 
-                        }catch(Exception e){}
+                        }catch(Exception e){
+
+                            rec.setVisibility(View.GONE);
+
+                        }
                     }
                 };
                 timer.schedule(timerTask,wait,timeDelayed);
