@@ -9,9 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SnapHelper;
 import android.view.MotionEvent;
 import android.view.View;
-
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -26,16 +23,17 @@ public  class InfiniteAutoList {
     private InfiniteAutoListAdapter infiniteEasyAdapter;
     private Context context;
     private RecyclerView.LayoutManager layoutManager;
-    private RequestQueue MyRequestQueue;
 
     public InfiniteAutoList(Context context,RecyclerView recyclerView, InfiniteAutoListAdapter infiniteEasyAdapter) {
+
         this.rec = recyclerView;
         this.context=context;
         this.infiniteEasyAdapter = infiniteEasyAdapter;
-        MyRequestQueue = Volley.newRequestQueue(context);
+
     }
 
    public void init() {
+
         SnapHelper snapHelper=new PagerSnapHelper();
         snapHelper.attachToRecyclerView(rec);
         rec.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,false));
