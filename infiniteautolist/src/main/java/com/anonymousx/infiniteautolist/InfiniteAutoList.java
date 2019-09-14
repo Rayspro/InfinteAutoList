@@ -57,12 +57,17 @@ public  class InfiniteAutoList {
         };
         timer=new Timer(true);
         final Handler handler=new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                timer.schedule(timerTask,1,timeDelayed);
-            }
-        },1);
+        try{
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    timer.schedule(timerTask,1,timeDelayed);
+                }
+            },1);
+        }catch (Exception e){
+
+        }
+
         rec.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
             @Override
             public boolean onInterceptTouchEvent(@NonNull RecyclerView recyclerView, @NonNull MotionEvent motionEvent) {
