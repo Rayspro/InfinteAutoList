@@ -50,7 +50,7 @@ public  class InfiniteAutoList {
 
                 }catch(Exception e){
 
-                    rec.setVisibility(View.GONE);
+                    //rec.setVisibility(View.GONE);
 
                 }
             }
@@ -78,7 +78,7 @@ public  class InfiniteAutoList {
 
                         }catch(Exception e){
 
-                            rec.setVisibility(View.GONE);
+                           // rec.setVisibility(View.GONE);
 
                         }
                     }
