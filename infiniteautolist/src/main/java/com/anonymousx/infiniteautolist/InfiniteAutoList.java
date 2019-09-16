@@ -29,7 +29,7 @@ public  class InfiniteAutoList {
         this.rec = recyclerView;
         this.context=context;
         this.infiniteEasyAdapter = infiniteEasyAdapter;
-
+        timer=new Timer(true);
     }
 
    public void init() {
@@ -55,18 +55,23 @@ public  class InfiniteAutoList {
                 }
             }
         };
-        timer=new Timer(true);
         final Handler handler=new Handler();
         try{
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    timer.schedule(timerTask,1,timeDelayed);
+                    try{
+
+                        timer.schedule(timerTask,1,timeDelayed);
+
+                    }catch (IllegalStateException e){
+
+                        timer.cancel();
+
+                    }
                 }
             },1);
-        }catch (Exception e){
-
-        }
+        }catch (Exception e){}
 
         rec.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
             @Override
@@ -88,7 +93,11 @@ public  class InfiniteAutoList {
                         }
                     }
                 };
-                timer.schedule(timerTask,wait,timeDelayed);
+                try{
+                    timer.schedule(timerTask,wait,timeDelayed);
+                }catch (IllegalStateException e){
+                    timer.cancel();
+                }
                 return false;
             }
 
